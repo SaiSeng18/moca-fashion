@@ -8,17 +8,6 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 
 export default function Home() {
 	const [loading, setLoading] = useState(true);
-	const [isFirstLoad, setIsFirstLoad] = useState(false);
-
-	useEffect(() => {
-		// setTimeout(() => setLoading(false), 5000);
-
-		console.log(isFirstLoad);
-		localStorage.setItem("isFirstLoad", isFirstLoad);
-		setIsFirstLoad(true);
-		localStorage.setItem("isFirstLoad", isFirstLoad);
-		console.log(isFirstLoad);
-	}, []);
 
 	return (
 		<div className="home">

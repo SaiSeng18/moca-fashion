@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "./Layout";
-import { animate, motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 
@@ -19,6 +19,27 @@ const letterAni = {
 		y: 0,
 		transition: {
 			ease: [0.6, 0.01, -0.05, 0.95],
+			duration: 1,
+		},
+	},
+};
+
+const customize = {
+	animate: {
+		transition: {
+			delayChildren: 0.4,
+			staggerChildren: 0.5,
+		},
+	},
+};
+
+const customizeItem = {
+	initial: { y: 150, opacity: 0 },
+	animate: {
+		y: 0,
+		opacity: 1,
+		transition: {
+			ease: [0.6, 0.01, 0.05, 0.95],
 			duration: 1,
 		},
 	},
@@ -50,10 +71,10 @@ export default function Main({ layoutId }) {
 			<motion.div id="banner" variants={banner}>
 				<div className="banner__content">
 					<AnimatedLetters title=".brand" />
-					<p className="banner__message">
+					<motion.p className="banner__message">
 						We are specialised in making things up the foundation of our brand and
 						setting our product up for success.
-					</p>
+					</motion.p>
 				</div>
 				<BannerRowCenter title={"fashion"} playMarquee={playMarquee} />
 				<BannerRowBottom title={"studio"} />
@@ -180,6 +201,48 @@ export default function Main({ layoutId }) {
 						</div>
 					</div>
 				</div>
+
+				<div className="section-3-container">
+					<div className="section-3">
+						<div className="section-3__customize">
+							<motion.p variants={customize} initial="initial" whileInView="animate">
+								<motion.span variants={customizeItem}>CUSTOMIZE</motion.span>
+								<motion.span variants={customizeItem}>CUSTOMIZE</motion.span>
+								<motion.span variants={customizeItem}>CUSTOMIZE</motion.span>
+								<motion.span variants={customizeItem}>CUSTOMIZE</motion.span>
+							</motion.p>
+						</div>
+
+						<div className="section-3__star">
+							<motion.div
+								animate={{ x: 100, rotate: -180 }}
+								whileInView={{ x: 0, rotate: 0 }}
+								transition={{ duration: 0.7 }}
+								style={{ originY: 0.5 }}>
+								*
+							</motion.div>
+						</div>
+						<div className="seciton-3__content">
+							<p>
+								GENERATE FULL BODY SHOTS OF MODELS BY SIMPLY TAKING A PICTURE OF A
+								DRESSED UP TORSO OR A BASE MODEL. WE AIM TO SOLVE MODEL SHORTAGE ISSUES
+								WITH THIS UNIQUE TECHNOLOGY.
+							</p>
+							<motion.div
+								className="section-3__divider"
+								initial={{ scaleX: 0 }}
+								whileInView={{ scaleX: 1, transition: { duration: 0.7 } }}
+								style={{ originX: 0 }}></motion.div>
+							<p>
+								商品のみの撮影で、AI modelが着用したモデル画像を生成。
+								ECサイトのささげ画像や店頭・POPなどへの活用が可能です。
+							</p>
+						</div>
+					</div>
+					<div className="customize-image">
+						<Image alt="Customize Image" src="/image/main.jpg" fill />
+					</div>
+				</div>
 			</motion.div>
 		</Layout>
 	);
@@ -242,8 +305,11 @@ const AnimatedLetters = ({ title, disabled }) => (
 		variants={disabled ? null : banner}
 		initial="initial"
 		animate="animate">
-		{[...title].map((letter) => (
-			<motion.span className="row-letter" variants={disabled ? null : letterAni}>
+		{[...title].map((letter, index) => (
+			<motion.span
+				key={index}
+				className="row-letter"
+				variants={disabled ? null : letterAni}>
 				{letter}
 			</motion.span>
 		))}
