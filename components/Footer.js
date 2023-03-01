@@ -6,7 +6,10 @@ export default function Footer() {
 	return (
 		<footer>
 			<div className="footer-container">
-				<Image src="" width={36} height={36} />
+				<div className="footer-logo">
+					<Image src="/favicon.png" width={36} height={36} alt="Footer Logo" />
+				</div>
+
 				<ul>
 					<li>
 						<Link href="/">Newsletter</Link>

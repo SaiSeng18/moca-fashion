@@ -1,16 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { Icon } from "@iconify/react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 
-export default function Header({ scrollY }) {
-	const [close, setClose] = useState(true);
+export default function Header({ scrollY, setMenu, menu }) {
 	const scale = useTransform(scrollY, [0, 100], [2, 1]);
 
 	return (
 		<header>
-			<Image src="" width={32} height={32} />
+			<div className="header-logo">
+				<Link href="/">
+					<Image
+						src="/image/logo/logo-no-background.png"
+						fill
+						alt="Header Logo"
+						sizes="(max-width: 768px) 100px,(max-width: 1200px) 100px,100px"
+					/>
+				</Link>
+			</div>
+
 			<nav>
 				<motion.div style={{ scale: scale }} transition={{ duration: 5 }}>
 					<Link href="/">01</Link>
@@ -20,13 +29,13 @@ export default function Header({ scrollY }) {
 					<Link href="/02">02</Link>
 				</motion.div>
 			</nav>
-			<button onClick={() => setClose(!close)}>
-				{close ? (
-					<Icon icon="tabler:menu" color="black" width={30} height={30} />
-				) : (
-					<Icon icon="gg:close" color="black" width={30} height={30} />
-				)}
-			</button>
+			<motion.button
+				onClick={() => setMenu(!menu)}
+				initial={{ rotate: 0, opacity: 1 }}
+				animate={menu ? { rotate: 45, opacity: 0 } : {}}
+				transition={{ duration: 0.2, ease: "easeInOut" }}>
+				<Icon icon="tabler:menu" color="black" width={30} height={30} />
+			</motion.button>
 		</header>
 	);
 }

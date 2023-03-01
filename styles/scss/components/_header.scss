@@ -5,7 +5,17 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem 1rem;
+	padding: 1rem;
+	z-index: 5;
+
+	.header-logo {
+		width: 5rem;
+		height: 2rem;
+		position: relative;
+		img {
+			object-fit: contain;
+		}
+	}
 
 	nav {
 		display: flex;
@@ -25,11 +35,5 @@ header {
 				color: rgb(214, 214, 214);
 			}
 		}
-	}
-
-	button {
-		background: none;
-		border: none;
-		cursor: pointer;
 	}
 }

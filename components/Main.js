@@ -88,6 +88,7 @@ export default function Main({ layoutId }) {
 								src="/image/main.jpg"
 								alt="Banner"
 								fill
+								priority
 								sizes="(max-width: 768px) 600px,(max-width: 1200px) 1000px,2000px"
 							/>
 						</motion.div>
@@ -145,8 +146,8 @@ export default function Main({ layoutId }) {
 								initial={{ scaleX: 0 }}
 								whileInView={{ scaleX: 1, transition: { duration: 0.7 } }}></motion.div>
 							<p>アパレルブランドに最適化したファッションモデルを提供します。</p>
-							<motion.a initial="initial" whileHover="hover" href="">
-								Learn More{" "}
+							<motion.a initial="initial" whileHover="hover" href="/02">
+								Learn More
 								<motion.span variants={hoverRotate}>
 									<Icon icon="material-symbols:arrow-right-alt-rounded" />
 								</motion.span>
@@ -240,7 +241,12 @@ export default function Main({ layoutId }) {
 						</div>
 					</div>
 					<div className="customize-image">
-						<Image alt="Customize Image" src="/image/main.jpg" fill />
+						<Image
+							alt="Customize Image"
+							src="/image/main.jpg"
+							fill
+							sizes="(max-width: 768px) 600px,(max-width: 1200px) 1000px,2000px"
+						/>
 					</div>
 				</div>
 			</motion.div>

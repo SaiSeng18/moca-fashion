@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import "../styles/scss/style.scss";
 import localFont from "next/font/local";
+import Head from "next/head";
 
 const SKG = localFont({
 	variable: "--primary-font",
@@ -57,6 +58,10 @@ const Moniqa = localFont({
 function MyApp({ Component, pageProps }) {
 	return (
 		<main className={`${SKG.variable} ${Moniqa.variable}`}>
+			<Head>
+				<title>UNISON</title>
+				<link rel="shortcut icon" href="/favicon.png" />
+			</Head>
 			<Component {...pageProps} />
 		</main>
 	);

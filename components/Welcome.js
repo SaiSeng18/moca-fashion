@@ -94,6 +94,7 @@ export default function Welcome({ setLoading }) {
 							src="https://images.unsplash.com/photo-1601762603339-fd61e28b698a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
 							alt="Main Image"
 							fill
+							sizes="(max-width: 768px) 600px,(max-width: 1200px) 1000px,2000px"
 						/>
 					</motion.div>
 				</motion.div>
