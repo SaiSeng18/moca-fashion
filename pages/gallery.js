@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const letter = {
@@ -26,18 +27,24 @@ const letterAni = {
 };
 
 export default function gallery() {
+	const router = useRouter();
 	return (
 		<>
 			<Head>
 				<title>UNISON | GALLERY</title>
 			</Head>
 			<div className="gallery">
-				<div className="back">
+				<div className="back-home">
 					<div className="button">
 						<Link href="/">
 							<Image src="/image/logo/logo-no-background.png" fill />
 						</Link>
 					</div>
+				</div>
+				<div className="back">
+					<button onClick={() => router.back()}>
+						<Icon icon="material-symbols:arrow-back-rounded" width={36} height={36} />
+					</button>
 				</div>
 				<GalleryItem
 					index="01"

@@ -32,7 +32,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		gap: 5rem;
+		gap: 3rem;
 		font-size: 4rem;
 		div {
 			&::after {
@@ -58,7 +58,6 @@
 		}
 		@media (max-width: $layout-breakpoint-small) {
 			font-size: 2rem;
-			gap: 3rem;
 		}
 	}
 }

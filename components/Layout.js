@@ -82,7 +82,7 @@ function Menu({ setMenu, menu }) {
 					<Link href="/">HOME</Link>
 				</motion.div>
 				<motion.div variants={navItem}>
-					<Link href="/02">STORE</Link>
+					<Link href="/product">STORE</Link>
 				</motion.div>
 				<motion.div variants={navItem}>
 					<Link href="/gallery">Gallery</Link>

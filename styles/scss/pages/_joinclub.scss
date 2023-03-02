@@ -2,6 +2,17 @@
 	width: 100%;
 	height: 100vh;
 
+	.back {
+		position: fixed;
+		top: 0;
+		right: 0;
+		padding: 1rem;
+
+		button {
+			color: black;
+		}
+	}
+
 	.club-card {
 		max-width: 550px;
 		margin: 0 auto;

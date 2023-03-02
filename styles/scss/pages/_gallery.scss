@@ -5,8 +5,23 @@
 	overflow-y: scroll;
 	scroll-snap-type: y mandatory;
 	overscroll-behavior-y: contain;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 
 	.back {
+		position: fixed;
+		top: 0;
+		right: 0;
+		padding: 0.5rem;
+		z-index: 5;
+
+		button {
+			color: black;
+		}
+	}
+
+	.back-home {
 		position: fixed;
 		top: 0;
 		left: 0;

@@ -15,7 +15,8 @@ export default function Header({ scrollY, setMenu, menu }) {
 						src="/image/logo/logo-no-background.png"
 						fill
 						alt="Header Logo"
-						sizes="(max-width: 768px) 100px,(max-width: 1200px) 100px,100px"
+						sizes="100px"
+						priority
 					/>
 				</Link>
 			</div>
