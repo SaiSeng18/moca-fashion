@@ -264,17 +264,46 @@ $product-text: rgb(189, 189, 189);
 				}
 			}
 
-			.product-size {
-				font-size: 2rem;
+			.size-rating {
 				display: flex;
-				gap: 1rem;
+				justify-content: space-between;
+				align-items: center;
+				.product-size {
+					font-size: 2rem;
+					display: flex;
+					align-items: center;
+					gap: 1rem;
 
-				.size {
-					color: $product-text;
+					.size {
+						color: $product-text;
+					}
+
+					@media (max-width: $layout-breakpoint-xsmall) {
+						font-size: 1.5rem;
+					}
 				}
 
-				@media (max-width: $layout-breakpoint-xsmall) {
-					font-size: 1.5rem;
+				.product-rating {
+					font-size: 2rem;
+					display: flex;
+					align-items: center;
+					gap: 1rem;
+					.rating-wrapper {
+						display: block;
+						color: $product-text;
+						display: flex;
+						align-items: flex-start;
+					}
+
+					.rating {
+						color: $product-text;
+						display: flex;
+						align-items: center;
+					}
+
+					@media (max-width: $layout-breakpoint-xsmall) {
+						font-size: 1.5rem;
+					}
 				}
 			}
 

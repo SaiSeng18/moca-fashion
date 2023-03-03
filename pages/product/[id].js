@@ -68,9 +68,19 @@ export default function ProductPage({ product, recommended }) {
 
 						<div className="divider"></div>
 
-						<div className="product-size">
-							<p className="size-text">SIZE</p>
-							<p className="size">30 x 50 inch</p>
+						<div className="size-rating">
+							<div className="product-size">
+								<p className="size-text">SIZE</p>
+								<p className="size">30 x 50 inch</p>
+							</div>
+
+							<div className="product-rating">
+								<p className="rating-text">RATING</p>
+								<div className="rating-wrapper">
+									<p className="rating">{product.rating}</p>
+									<Icon icon="material-symbols:star" />
+								</div>
+							</div>
 						</div>
 
 						<div className="divider"></div>
