@@ -18,7 +18,7 @@ export default function Footer() {
 						<Link href="/">App</Link>
 					</li>
 					<li>
-						<Link href="/">Store</Link>
+						<Link href="/product">Store</Link>
 					</li>
 					<li>
 						<Link href="/">Follow Us</Link>

@@ -1,87 +1,21 @@
 import { Icon } from "@iconify/react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
+import { productsData } from "../../uils/products";
 
-const products = [
-	{
-		name: "Unblinding shade",
-		type: "Shirt",
-		imgUrl: "/image/products/1.jpg",
-		price: "300",
-	},
-	{
-		name: "Be Charmed",
-		type: "Shirt",
-		imgUrl: "/image/products/2.jpg",
-		price: "200",
-	},
-	{
-		name: "Blossom Gift Baskets",
-		type: "Accessory",
-		imgUrl: "/image/products/3.jpg",
-		price: "400",
-	},
-	{
-		name: "Adaline’s Wardrobe",
-		type: "Shirt",
-		imgUrl: "/image/products/4.jpg",
-		price: "500",
-	},
-	{
-		name: "The Brooch of the Baroness",
-		type: "Shirt",
-		imgUrl: "/image/products/5.jpg",
-		price: "600",
-	},
-	{
-		name: "Applause",
-		type: "Pants",
-		imgUrl: "/image/products/6.jpg",
-		price: "320",
-	},
-	{
-		name: "Apple Blossoms",
-		type: "Pants",
-		imgUrl: "/image/products/7.jpg",
-		price: "690",
-	},
-	{
-		name: "Bien Habillé",
-		type: "Accessory",
-		imgUrl: "/image/products/8.jpg",
-		price: "200",
-	},
-	{
-		name: "Bling-a-Ling",
-		type: "Shirt",
-		imgUrl: "/image/products/9.jpg",
-		price: "740",
-	},
-	{
-		name: "Kiwi Bird Boutique",
-		type: "Accessory",
-		imgUrl: "/image/products/10.jpg",
-		price: "500",
-	},
-	{
-		name: "Loire Valley",
-		type: "Shoes",
-		imgUrl:
-			"https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-		price: "500",
-	},
-	{
-		name: "Fashion Gig",
-		type: "Shoes",
-		imgUrl:
-			"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80",
-		price: "500",
-	},
-];
+export const getStaticProps = async () => {
+	return {
+		props: {
+			products: productsData,
+		},
+	};
+};
 
-export default function ProductPage() {
+export default function ProductsPage({ products }) {
 	const [filter, setFilter] = useState("");
+
 	return (
 		<Layout>
 			<div className="product-container">
@@ -111,16 +45,32 @@ export default function ProductPage() {
 					</div>
 				</div>
 				<div className="category">
-					<button onClick={() => setFilter("")}>All</button>
-					<button onClick={() => setFilter("Pants")}>Pants</button>
-					<button onClick={() => setFilter("Shirt")}>Shirt</button>
-					<button onClick={() => setFilter("Shoes")}>Shoes</button>
-					<button onClick={() => setFilter("Accessory")}>Accessory</button>
+					<div className="filter-container">
+						<button onClick={() => setFilter("")}>All</button>
+						<button onClick={() => setFilter("pants")}>Pants</button>
+						<button onClick={() => setFilter("shirt")}>Shirt</button>
+						<button onClick={() => setFilter("shoes")}>Shoes</button>
+						<button onClick={() => setFilter("accessory")}>Accessory</button>
+					</div>
+					<div className="search">
+						<input type="text" onChange={(e) => setFilter(e.target.value)} />
+						<Icon icon="uil:search" />
+					</div>
 				</div>
 
 				<div className="products-card-container">
 					{products
-						.filter((e) => e.type.includes(filter))
+						.filter((e) => {
+							if (!filter) {
+								return true;
+							}
+							if (
+								e.type.toLowerCase().includes(filter.toLowerCase()) ||
+								e.name.toLowerCase().includes(filter.toLowerCase())
+							) {
+								return true;
+							}
+						})
 						.map((product, idx) => (
 							<Product
 								name={product.name}
@@ -128,6 +78,7 @@ export default function ProductPage() {
 								imgUrl={product.imgUrl}
 								price={product.price}
 								key={idx}
+								id={product.id}
 							/>
 						))}
 				</div>
@@ -136,19 +87,21 @@ export default function ProductPage() {
 	);
 }
 
-function Product({ name, type, imgUrl, price, key }) {
+function Product({ name, type, imgUrl, price, id }) {
 	return (
-		<div className="product-card" key={key}>
-			<div className="product-image">
-				<Image src={imgUrl} fill sizes="500px" />
-			</div>
-			<div className="product-detail">
-				<div className="product-info">
-					<p className="product-name">{name}</p>
-					<p className="product-type">{type}</p>
+		<div className="product-card">
+			<Link href={`/product/${id}`}>
+				<div className="product-image">
+					<Image src={imgUrl} fill sizes="500px" alt="Product Image" />
 				</div>
-				<p className="product-price">{price}$</p>
-			</div>
+				<div className="product-detail">
+					<div className="product-info">
+						<p className="product-name">{name}</p>
+						<p className="product-type">{type}</p>
+					</div>
+					<p className="product-price">{price}$</p>
+				</div>
+			</Link>
 		</div>
 	);
 }
